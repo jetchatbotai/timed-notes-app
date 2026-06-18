@@ -180,8 +180,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 58,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Timer ekranına geçiş burada yapılacak
-                  },
+  final totalSeconds =
+      (selectedHour * 3600) + (selectedMinute * 60) + selectedSecond;
+
+  if (totalSeconds <= 0) {
+    return;
+  }
+
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => TimerScreen(
+        note: noteController.text,
+        totalSeconds: totalSeconds,
+      ),
+    ),
+  );
+},
                   child: const Text(
                     'START',
                     style: TextStyle(
